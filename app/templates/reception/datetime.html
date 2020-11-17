@@ -12,9 +12,11 @@
                 <form method="POST">
                     {% csrf_token %}
                     {% for weekday in weekdays %}
-                        {% for t in free_times.weekday %}
-                            <button name="time" type="submit" value="">{{ weekday    }}</button>
+                        {% for free_time in free_times %}
+                            <button style="display: inline;" name="time" type="submit" value="{{ weekday }} {{ free_time }}">{{ weekday }}: {{ free_time }}</button>
+                            <h2 style="display: inline;">|</h2>
                         {% endfor %}
+                        <hr>
                     {% endfor %}
                 </form>
             </div>

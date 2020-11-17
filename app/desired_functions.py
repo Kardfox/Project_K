@@ -4,9 +4,10 @@ import requests
 from datetime import datetime, timedelta
 from pytz import UTC
 
-WEEKDAYS = (('Понедельник', 0), ('Вторник', 1), ('Среда', 2), ('Четверг', 3), ('Пятница', 4), ('Суббота', 5), ('Воскресенье', 6))
+ISO_WEEKDAYS = (('Понедельник', 0), ('Вторник', 1), ('Среда', 2), ('Четверг', 3), ('Пятница', 4), ('Суббота', 5), ('Воскресенье', 6))
+WEEKDAYS = ('Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье')
 
-def get_time(time, interval, sign):
+'''def get_time(time, interval, sign):
     today = datetime.today()
     time_list = time.split(sign)#['\n', 'Понедельник\n12:00 - 18:00\n', 'Вторник\n14:15 - 16:000\n']
     time_list[len(time_list) - 1] = time_list[len(time_list) - 1] + '\r\n'
@@ -35,6 +36,18 @@ def get_time(time, interval, sign):
             #Append start(free) time
             start_datetime += timedelta(hours = int(interval[0]), minutes = int(interval[1]))
             #Addition interval to start_datetime
+    return free_time'''
+
+def get_time(time, interval):
+    free_time = []
+    today = datetime.today()
+    time_list = time.split(' - ')
+    interval = interval.split(':')#['1', '0']
+    start_time = datetime.strptime(time_list[0], '%H:%M')
+    end_time = datetime.strptime(time_list[1], '%H:%M')
+    while int(start_time.hour) * 60 + int(start_time.minute) < int(end_time.hour) * 60 + int(end_time.minute):
+        free_time.append(datetime.time(start_time))
+        start_time += timedelta(hours = int(interval[0]), minutes = int(interval[1]))
     return free_time
 
 def style(filename):
@@ -60,10 +73,16 @@ def revealing_olds_objs(arr):
     return new_objs
 
 def time_to_datetime(time_obj):
-    weekday_obj_number = dict(WEEKDAYS)[time_obj[0].split(' ')[0]]
+    weekday_obj_number = dict(ISO_WEEKDAYS)[time_obj[0].split(' ')[0]]
     weekday_new_number = datetime.weekday(datetime.today())
     if weekday_obj_number - weekday_new_number >= 0:
         date = datetime.date(datetime.today() + timedelta(days = weekday_obj_number - weekday_new_number))
-        return (date, datetime.time(datetime.strptime(time_obj[0].split(' ')[1], '%H:%M:%S')))
+        return (date, datetime.time(datetime.strptime(time_obj[0].split(' ')[1], '%H:%M')))
     else:
         return False
+
+def str_list_to_time_list(time_array):
+    time_list = []
+    for time in time_array:
+        time_list.append(datetime.time(datetime.strptime(time, '%H:%M')))
+    return time_list

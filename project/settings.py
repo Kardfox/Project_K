@@ -25,7 +25,7 @@ SECRET_KEY = 'vyz!=zd-ci87=7&_g5k3_e5@cj_70(7i=g^yth)(w0bbcl-a5v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['llocall.loca.lt', '127.0.0.1']
+ALLOWED_HOSTS = ['local.loca.lt', '127.0.0.1']
 
 
 # Application definition

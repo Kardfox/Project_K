@@ -1,0 +1,7 @@
+<form method="POST">
+    {% csrf_token %}
+    {% for doctor in doctors %}
+        <input type="radio" name="doctor" value="{{ doctor.full_name }}">{{ doctor }}
+    {% endfor %}
+    <button type="submit">Выбрать</button>
+</form>
