@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <header>
+            <title>Main</title>
+            <h4>Регистратура Калининградской области</h4>
+            <a href="{% url 'personal_cabinet' %}" class="link-on-header">Личный кабинет</a>
+        </header>
+        <div class="main-content">
+            <h1 class="greeting">История(прием от {{ last_appointment.datetime.date }})</h1>
+            <h2>Услуга: {{ last_appointment.service }}</h2>
+            <h2>Жалобы при обращении:</h2>
+            <h2>{{ last_appointment.сomplaints }}</h2>
+            <h2>Анамнез: {{ last_appointment.anamnesis }}</h2>
+            <h2>Объективный статус: {{ last_appointment.objective_status }}</h2>
+            <h2>Назначения:</h2>
+            <h2>{{ last_appointment.appointment }}</h2>
+            <h2>Лекарственные назначения:</h2>
+            <h2>{{ last_appointment.appointment_med }}</h2>
+            <h2>Сопутствующие заболевания: {{ last_appointment.addiction_diseases }}</h2>
+            <h2>Доктор: {{ last_appointment.doctor.full_name }}</h2>
+            <h2>Дата и время: {{ last_appointment.datetime }}</h2>
+        </div>
+        <footer></footer>
+    </body>
+</html>
+
+<!-- app/static/css/style.css -->
+<style>
+{{ style }}
+</style>

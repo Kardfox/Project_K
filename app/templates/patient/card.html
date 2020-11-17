@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <header>
+            <title>Card</title>
+            <h4><a href="{% url 'main' %}" style="color: black;">Регистратура Калининградской области</a></h4>
+            <a href="{% url 'personal_cabinet' %}" class="link-on-header">Личный кабинет</a>
+        </header>
+        <div class="main-content">
+            <h1 class="greeting">Личный кабинет</h1>
+            <div class="personal-data">
+                <h2>ФИО: {{ patient.full_name }}</h2>
+                <h2>ИНН: {{ patient.inn }}</h2>
+                <h2>ОМС: {{ patient.oms }}</h2>
+                <h2>Домашний адрес: {{ patient.home_adress }}</h2>
+            </div>
+            <hr>
+            <div class="future-appointments">
+                <h1>Записи к врачу</h1>
+                {% if len_future_appointments == 0 %}
+                    <h2>Отсутствуют</h2>
+                {% else %}
+                    {% for appointment in future_appointments %}
+                        <h2>{{ appointment }}</h2>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <hr>
+            <div class="medical-history">
+                <h1>Моя история</h1>
+                {% for last_appointment in last_appointments %}
+                        <h2><a href="appointment/{{ last_appointment.pk }}/">{{ last_appointment.doctor }}</a></h2>
+                {% endfor %}
+            </div>
+            <hr>
+            <div class="med">
+                <h1>Прописанные лекарства</h1>
+                {% for med in meds %}
+                    {% if med.2 == 'Лекарств не назначено' %}
+                        <h2>{{ med.2 }}</h2>
+                    {% else %}
+                        <h2>Лекарство: {{ med.0 }} -
+                        <a href="{{ med.1 }}">Аптека.ру</a>, цена от: {{ med.2 }}руб.</h2>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>
+
+<!-- app/static/css/style.css -->
+<style>
+{{ style }}
+</style>

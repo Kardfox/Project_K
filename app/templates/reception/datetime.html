@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <header>
+            <title>Datetime</title>
+            <h4><a href="{% url 'main' %}" style="color: black;">Регистратура Калининградской области</a></h4>
+            <a href="{% url 'personal_cabinet' %}" class="link-on-header">Личный кабинет</a>
+        </header>
+        <div class="main-content">
+            <h1 class="greeting">Выбор даты и времени приема</h1>
+            <div class="datetime">
+                <form method="POST">
+                    {% csrf_token %}
+                    {% for weekday in weekdays %}
+                        {% for t in free_times.weekday %}
+                            <button name="time" type="submit" value="">{{ weekday    }}</button>
+                        {% endfor %}
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+        <footer></footer>
+    </body>
+</html>
+
+<!-- app/static/css/style.css -->
+<style>
+{{ style }}
+</style>
