@@ -13,8 +13,7 @@
                     {% csrf_token %}
                     {% for weekday in weekdays %}
                         {% for free_time in free_times %}
-                            <button style="display: inline;" name="time" type="submit" value="{{ weekday }} {{ free_time }}">{{ weekday }}: {{ free_time }}</button>
-                            <h2 style="display: inline;">|</h2>
+                            <button style="display: inline;" name="time" type="submit" value="{{ weekday }} {{ free_time }}">{{ weekday }}: {{ free_time }} </button>
                         {% endfor %}
                         <hr>
                     {% endfor %}

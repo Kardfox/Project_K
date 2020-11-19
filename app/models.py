@@ -48,6 +48,9 @@ class Reception(models.Model):
     full_name_patient = models.ForeignKey(Patient, on_delete = models.DO_NOTHING, verbose_name = 'ФИО пациента')
     datetime = models.DateTimeField(verbose_name = 'Дата и время приема', null = True)
 
+    def __str__(self):
+        return f'{self.full_name_doctor.full_name}, {self.full_name_doctor.position}({self.datetime})'
+
 class MedicalHistory(models.Model):
     full_name_patient = models.ForeignKey(Patient, on_delete = models.DO_NOTHING, verbose_name = 'ФИО пациента')
     service = models.CharField(max_length = 30, verbose_name = 'Услуга')

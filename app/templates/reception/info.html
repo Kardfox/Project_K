@@ -1,2 +1,3 @@
 <h1>Вы записались на прием к {{ reception.full_name_doctor.full_name }}. Дата и время: {{ reception.datetime }}. Телефон врача {{ reception.full_name_doctor.telephone }}</h1>
-<a href="{% url 'main' %}">Главная</a><a style="display: inline;" href="{% url 'personal_cabinet' %}">Главная</a>
+<a href="{% url 'main' %}">Главная</a>
+<a style="display: inline;" href="{% url 'personal_cabinet' %}">Личный кабинет</a>

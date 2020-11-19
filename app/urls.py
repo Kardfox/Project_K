@@ -13,4 +13,6 @@ urlpatterns = [
     path('reception/<int:pk>/info/', views.reception_info, name = 'reception_info'),
     path('personal_cabinet/', views.personal_cabinet, name = 'personal_cabinet'),
     path('personal_cabinet/appointment/<int:pk>/', views.last_appointment, name = 'last_appointment'),
+    #for doctor
+    path('login_doctor/', views.login_doctor, name = 'login_doctor'),
 ]

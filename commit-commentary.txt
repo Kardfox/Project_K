@@ -1,0 +1,4 @@
+Edited style on info.html and datetime.html
+Added __str__ in model Reception
+Update hierarchy of project
+Start work WoWork has begun on the creation of doctors
