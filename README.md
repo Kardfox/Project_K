@@ -1,4 +1,4 @@
 # Project K
-'''console
+'''batch
 workvenv\Scripts\activate
 '''
