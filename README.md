@@ -9,3 +9,4 @@ workvenv\Scripts\activate
 ```bacth
 manage.py runserver
 ```
+(Please contact the administartor if something doesn't work)
